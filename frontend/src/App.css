@@ -1,0 +1,124 @@
+body {
+  background-image: url('./wp3123778-iron-man-vs-captain-america-wallpapers.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Apply a blur effect to the background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  filter: blur(5px); /* Adjust the blur intensity as needed */
+  z-index: -1;
+}
+
+.App {
+  text-align: center;
+  padding: 20px;
+  background: rgba(133, 131, 131, 0.8); /* Semi-transparent white background */
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+textarea {
+  width: 80%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #626262;
+  border-radius: 5px;
+  background:  rgba(238, 236, 236, 0.9); /* Semi-transparent background */
+  font-family: monospace;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 12px;
+  cursor: pointer;
+  background: #0062ff; /* Blue background */
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+pre {
+  background: rgba(245, 241, 241, 0.9); /* Semi-transparent background */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: left;
+  margin: 20px auto;
+  width: 80%;
+  font-family: monospace;
+  font-size: 14px;
+  white-space: pre-wrap; /* Ensure long lines wrap */
+}
+
+/* Style the select dropdowns */
+select {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  font-size: 14px;
+}
+
+/* Style the labels */
+label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+/* Add some spacing and styling to the header */
+h1 {
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+h2 {
+  margin-top: 20px;
+  color: #000000;
+}
+/* Social links container */
+.social-links {
+  margin-top: 30px;
+  padding: 15px; /* Add padding for better spacing */
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between logos */
+}
+
+/* Social logo styling */
+.social-logo {
+  width: 40px; /* Adjust size as needed */
+  height: 40px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 1.6; /* Slightly transparent logos */
+  border-radius: 25%; /* Circular logos */
+  padding: 7px; /* Add padding around the logos */
+  background: rgba(214, 214, 214, 0.2); /* Slight transparent background for logos */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.social-logo:hover {
+  transform: scale(1.5); /* Slightly enlarge on hover */
+  opacity: 1; /* Fully visible on hover */
+  background: rgba(0, 0, 0, 0.4); /* Slightly more visible background on hover */
+}
