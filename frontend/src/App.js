@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
+import SplashCursor from "./components/SplashCursor";
 import "./App.css";
 
 function App() {
@@ -7,23 +8,82 @@ function App() {
   const [fromLanguage, setFromLanguage] = useState("Python");
   const [toLanguage, setToLanguage] = useState("JavaScript");
   const [convertedCode, setConvertedCode] = useState("");
+  const splashCursorRef = useRef(null); // Ref for SplashCursor
 
   const handleConvert = async () => {
     try {
-      const response = await axios.post("https://code-converter-openai-backend.onrender.com/convert", {
+      const response = await axios.post("http://localhost:5000/convert", {
         code,
         fromLanguage,
         toLanguage,
       });
       setConvertedCode(response.data.convertedCode);
+
+      // Trigger SplashCursor effect on conversion
+      if (splashCursorRef.current) {
+        splashCursorRef.current.splat(0.5, 0.5, 0, 0, generateColor());
+      }
     } catch (error) {
       console.error(error);
       alert("Failed to convert code");
     }
   };
 
+  const generateColor = () => {
+    let c = HSVtoRGB(Math.random(), 1.0, 1.0);
+    c.r *= 0.5; // Reduce brightness
+    c.g *= 0.5;
+    c.b *= 0.5;
+    return c;
+  };
+
+  const HSVtoRGB = (h, s, v) => {
+    let r, g, b, i, f, p, q, t;
+    i = Math.floor(h * 6);
+    f = h * 6 - i;
+    p = v * (1 - s);
+    q = v * (1 - f * s);
+    t = v * (1 - (1 - f) * s);
+    switch (i % 6) {
+      case 0:
+        r = v;
+        g = t;
+        b = p;
+        break;
+      case 1:
+        r = q;
+        g = v;
+        b = p;
+        break;
+      case 2:
+        r = p;
+        g = v;
+        b = t;
+        break;
+      case 3:
+        r = p;
+        g = q;
+        b = v;
+        break;
+      case 4:
+        r = t;
+        g = p;
+        b = v;
+        break;
+      case 5:
+        r = v;
+        g = p;
+        b = q;
+        break;
+      default:
+        break;
+    }
+    return { r, g, b };
+  };
+
   return (
     <div className="App">
+      <SplashCursor ref={splashCursorRef} />
       <h1>AI Code Converter</h1>
       <textarea
         value={code}
@@ -38,7 +98,9 @@ function App() {
           value={fromLanguage}
           onChange={(e) => setFromLanguage(e.target.value)}
         >
+          <option value="select">Select</option>
           <option value="c">C</option>
+          <option value="cpp">C++</option>
           <option value="cpp">C++</option>
           <option value="python">Python</option>
           <option value="java">Java</option>
@@ -75,6 +137,7 @@ function App() {
           value={toLanguage}
           onChange={(e) => setToLanguage(e.target.value)}
         >
+          <option value="select">Select</option>
           <option value="c">C</option>
           <option value="cpp">C++</option>
           <option value="python">Python</option>
