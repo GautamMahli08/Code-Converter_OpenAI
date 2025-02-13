@@ -101,7 +101,6 @@ function App() {
           <option value="select">Select</option>
           <option value="c">C</option>
           <option value="cpp">C++</option>
-          <option value="cpp">C++</option>
           <option value="python">Python</option>
           <option value="java">Java</option>
           <option value="lex">lex</option>
